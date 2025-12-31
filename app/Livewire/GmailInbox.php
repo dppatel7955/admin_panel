@@ -53,8 +53,9 @@ class GmailInbox extends Component
 
     public function loadMessages()
     {
+        $user = Auth::user();
+        if (!$user->gmail_token) return;
         $this->loading = true;
-
         $params = ['maxResults' => 10];
         if ($this->nextPageToken) {
             $params['pageToken'] = $this->nextPageToken;

@@ -6,6 +6,10 @@
             <h2 class="text-3xl font-bold">Users</h2>
             <p class="text-sm text-gray-500">Manage application users</p>
         </div>
+        <!-- Create Button -->
+        <a wire:navigate href="{{ route('users.create') }}" class="btn-primary">
+            ➕ Create User
+        </a>
     </div>
     <!-- Users Navigation -->
     <div class="bg-white rounded-2xl shadow px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -62,11 +66,6 @@
             </button>
 
         </div>
-
-        <!-- Create Button -->
-        <a wire:navigate href="{{ route('users.create') }}" class="btn-primary">
-            ➕ Create User
-        </a>
     </div>
 
     <!-- Table -->

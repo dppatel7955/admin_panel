@@ -57,7 +57,7 @@
         <!-- Settings -->
         @can('manage settings')
             <a wire:navigate
-                href="#"
+                href="{{ route('settings') }}"
                 class="block px-4 py-2 rounded
                 {{ request()->routeIs('settings') ? 'bg-gray-700' : 'hover:bg-gray-700' }}"
             >
@@ -82,7 +82,42 @@
                 ⚙️ Email Setup
             </a>
         @endcan
-
+        @can('manage calender')
+            <a wire:navigate
+                href="{{route('calender')}}"
+                class="block px-4 py-2 rounded
+                {{ request()->routeIs('calender') ? 'bg-gray-700' : 'hover:bg-gray-700' }}"
+            >
+                ⚙️ Calender
+            </a>
+        @endcan
+        @can('manage brand')
+            <a wire:navigate
+                href="{{route('brands.index')}}"
+                class="block px-4 py-2 rounded
+                {{ request()->routeIs('brands.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}"
+            >
+                ⚙️ Brand
+            </a>
+        @endcan
+        @can('manage category')
+            <a wire:navigate
+                href="{{route('categories.index')}}"
+                class="block px-4 py-2 rounded
+                {{ request()->routeIs('categories.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}"
+            >
+                ⚙️ Category
+            </a>
+        @endcan
+        
+        @can('manage product')
+            <a wire:navigate
+                href="{{route('products.index')}}"
+                class="block px-4 py-2 rounded
+                {{ request()->routeIs('products.*') ? 'bg-gray-700' : 'hover:bg-gray-700' }}"
+            >
+                ⚙️ Product
+            </a>
+        @endcan
     </nav>
-
 </aside>

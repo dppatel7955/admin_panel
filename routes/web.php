@@ -9,9 +9,18 @@ use App\Livewire\Roles;
 use App\Livewire\Users\UserIndex;
 use App\Livewire\Users\UserForm;
 use App\Http\Controllers\GmailController;
+use App\Http\Controllers\GoogleCalendarController;
 use App\Livewire\Auth\Register;
+use App\Livewire\Brand\BrandForm;
+use App\Livewire\Brand\BrandList;
+use App\Livewire\Calendar;
+use App\Livewire\Category\CategoryList;
+use App\Livewire\Category\CategoryForm;
 use App\Livewire\GmailInbox;
 use App\Livewire\Mail\Emailsetup;
+use App\Livewire\Product\ProductForm;
+use App\Livewire\Product\ProductList;
+use App\Livewire\Settings\SettingsPage;
 
 Route::middleware('guest')->group(function () {
     Route::get('/', Login::class);
@@ -33,6 +42,24 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/gmail/connect', [GmailController::class, 'connect'])->name('gmail.connect');
     Route::get('/google/callback', [GmailController::class, 'callback'])->name('gmail.callback');
+
+    Route::get('/google/auth', [GoogleCalendarController::class, 'redirect']);
+    Route::get('/calendar/google/callback', [GoogleCalendarController::class, 'callback'])->name('calender.callback');
+
+    Route::get('/calendar', Calendar::class)->name('calender');
+    Route::get('/settings', SettingsPage::class)->name('settings');
+
+    Route::get('/products', ProductList::class)->name('products.index');
+    Route::get('/products/create', ProductForm::class)->name('products.create');
+    Route::get('/products/{id}/edit', ProductForm::class)->name('products.edit');
+
+    Route::get('/brands', BrandList::class)->name('brands.index');
+    Route::get('brands/create', BrandForm::class)->name('brands.create');
+    Route::get('brands/{id}/edit', BrandForm::class)->name('brands.edit');
+
+    Route::get('/categories', CategoryList::class)->name('categories.index');
+    Route::get('categories/create', CategoryForm::class)->name('categories.create');
+    Route::get('categories/{id}/edit', CategoryForm::class)->name('categories.edit');
 
     Route::get('/test-helper', function () {
         return parseEmailTemplate(
